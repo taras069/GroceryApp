@@ -9,17 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.comp_admin.groceryapp.R
 import com.example.comp_admin.groceryapp.activities.SubCategoryActivity
 import com.example.comp_admin.groceryapp.models.Category
+import com.example.comp_admin.groceryapp.models.Product
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.rv_products.view.*
-import com.squareup.picasso.*
+import kotlinx.android.synthetic.main.rv_sub_categories.view.*
 
-
-class CategoryAdapter(
+class ProductAdapter(
     private var mContext: Context,
-    private var mList: ArrayList<Category>
-) : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
+    private var mList: ArrayList<Product>
+) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        var view = LayoutInflater.from(mContext).inflate(R.layout.rv_products, parent, false)
+        var view = LayoutInflater.from(mContext).inflate(R.layout.rv_sub_categories, parent, false)
         return MyViewHolder(view)
     }
 
@@ -31,25 +32,26 @@ class CategoryAdapter(
         holder.bind(mList.get(position))
     }
 
-    fun setData(list: ArrayList<Category>) {
+    fun setData(list: ArrayList<Product>) {
         mList = list
         notifyDataSetChanged()
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(category: Category) {
-            itemView.cat_name.text = category.catName
+        fun bind(product: Product) {
+            itemView.product_name.text = product.productName
             Picasso.with(mContext)
-                .load("http://rjtmobile.com/grocery/images/" + category.catImage)
-                .into(itemView.cat_image)
-            itemView.setOnClickListener {
+                .load("http://rjtmobile.com/grocery/images/" + product.productImage)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(itemView.my_product_image)
+            /*itemView.setOnClickListener {
                 var intent = Intent(mContext, SubCategoryActivity::class.java)
                 intent.putExtra(Category.KEY_CATEGORY, category)
                 mContext.startActivity(intent)
                 //  Toast.makeText(mContext, category.catName, Toast.LENGTH_SHORT).show()
+                }*/
             }
 
         }
     }
 
-}

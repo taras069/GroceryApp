@@ -12,7 +12,6 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.comp_admin.groceryapp.R
 import com.example.comp_admin.groceryapp.adapters.CategoryAdapter
-import com.example.comp_admin.groceryapp.app.Endpoints
 import com.example.comp_admin.groceryapp.models.Category
 import com.example.comp_admin.groceryapp.models.CategoryResponse
 import com.google.gson.GsonBuilder
@@ -41,11 +40,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-
+        val url = "https://apolis-grocery.herokuapp.com/api/category"
         var requestQueue = Volley.newRequestQueue(this)
 
         var stringRequest = StringRequest(
-            Request.Method.GET, Endpoints.getCategory(),
+            Request.Method.GET, url,
             Response.Listener {
                 var gson = GsonBuilder().create()
                 var categoryResponse = gson.fromJson(it.toString(), CategoryResponse::class.java)

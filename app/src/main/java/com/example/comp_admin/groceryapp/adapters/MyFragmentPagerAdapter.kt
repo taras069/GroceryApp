@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.comp_admin.groceryapp.fragments.ProductFragment
+import com.example.comp_admin.groceryapp.models.SubCategory
 
 class MyFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
@@ -22,8 +23,8 @@ class MyFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         return myTitleList.get(position)
     }
 
-    fun addFragment(name: String) {
-        myFragmentList.add(ProductFragment.newInstance(name))
-        myTitleList.add(name)
+    fun addFragment(subCategory: SubCategory) {
+        myFragmentList.add(ProductFragment.newInstance(subCategory.subId))
+        myTitleList.add(subCategory.subName)
     }
 }

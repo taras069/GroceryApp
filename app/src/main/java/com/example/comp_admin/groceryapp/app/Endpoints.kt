@@ -3,7 +3,7 @@ package com.example.comp_admin.groceryapp.app
 class Endpoints {
     companion object {
         const val URL_CATEGORY = "category"
-        const val URL_SUB_CATEGORY = "subcategory"
+        const val URL_SUB_CATEGORY = "subcategory/"
         const val URL_PRODUCT = "products"
 
         fun getCategory(): String {
