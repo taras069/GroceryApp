@@ -39,14 +39,14 @@ class CategoryAdapter(
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(category: Category) {
             itemView.cat_name.text = category.catName
-            Picasso.with(mContext)
+            Picasso.get()
                 .load("http://rjtmobile.com/grocery/images/" + category.catImage)
                 .into(itemView.cat_image)
             itemView.setOnClickListener {
                 var intent = Intent(mContext, SubCategoryActivity::class.java)
                 intent.putExtra(Category.KEY_CATEGORY, category)
                 mContext.startActivity(intent)
-                //  Toast.makeText(mContext, category.catName, Toast.LENGTH_SHORT).show()
+
             }
 
         }

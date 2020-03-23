@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#e8ebe8"
     tools:context=".activities.SubCategoryActivity">
+
+    <include layout="@layout/app_bar" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/my_tab_layout"
@@ -15,6 +18,6 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/my_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

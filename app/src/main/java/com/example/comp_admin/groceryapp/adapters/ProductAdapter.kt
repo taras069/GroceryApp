@@ -2,11 +2,13 @@ package com.example.comp_admin.groceryapp.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comp_admin.groceryapp.R
+import com.example.comp_admin.groceryapp.activities.ProductDetailActivity
 import com.example.comp_admin.groceryapp.activities.SubCategoryActivity
 import com.example.comp_admin.groceryapp.models.Category
 import com.example.comp_admin.groceryapp.models.Product
@@ -39,17 +41,20 @@ class ProductAdapter(
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(product: Product) {
+          Log.d("key", "http://rjtmobile.com/grocery/images/" + product.productImage)
             itemView.product_name.text = product.productName
-            Picasso.with(mContext)
+            itemView.product__price.text = "$" + product.price
+           // itemView.product_id.text = product._id
+            Picasso.get()
                 .load("http://rjtmobile.com/grocery/images/" + product.productImage)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(itemView.my_product_image)
-            /*itemView.setOnClickListener {
-                var intent = Intent(mContext, SubCategoryActivity::class.java)
-                intent.putExtra(Category.KEY_CATEGORY, category)
+            itemView.setOnClickListener {
+                var intent = Intent(mContext, ProductDetailActivity::class.java)
+                intent.putExtra(Product.KEY_PRODUCT,product )
                 mContext.startActivity(intent)
-                //  Toast.makeText(mContext, category.catName, Toast.LENGTH_SHORT).show()
-                }*/
+
+                }
             }
 
         }

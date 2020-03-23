@@ -3,7 +3,10 @@ package com.example.comp_admin.groceryapp.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -17,9 +20,10 @@ import com.example.comp_admin.groceryapp.models.SubCategory
 import com.example.comp_admin.groceryapp.models.SubCategoryResponse
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_sub_category.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 lateinit var category: Category
-lateinit var adapterFragment : MyFragmentPagerAdapter
+lateinit var adapterFragment: MyFragmentPagerAdapter
 
 class SubCategoryActivity : AppCompatActivity() {
 
@@ -31,9 +35,8 @@ class SubCategoryActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        setupToolbar()
         category = intent.getSerializableExtra(Category.KEY_CATEGORY) as Category
-        Toast.makeText(this, category.catId.toString(), Toast.LENGTH_SHORT).show()
-
         getData(category.catId)
         adapterFragment = MyFragmentPagerAdapter(supportFragmentManager)
     }
@@ -48,10 +51,10 @@ class SubCategoryActivity : AppCompatActivity() {
                 var gson = GsonBuilder().create()
                 var subCategoryResponse =
                     gson.fromJson(it.toString(), SubCategoryResponse::class.java)
-                Toast.makeText(this, subCategoryResponse.data.size.toString(), Toast.LENGTH_SHORT).show()
+
                 Log.d("data", it.toString())
                 var mSubList = subCategoryResponse.data
-                for(sub in mSubList){
+                for (sub in mSubList) {
                     adapterFragment.addFragment(sub)
                 }
                 my_view_pager.adapter = adapterFragment
@@ -62,6 +65,29 @@ class SubCategoryActivity : AppCompatActivity() {
             })
 
         requestQueue.add(stringRequest)
+    }
+    private fun setupToolbar(){
+        var toolbar = my_toolbar
+        toolbar.title = "SubCategory Activity"
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_cart -> {
+                Toast.makeText(this, "Cart Icon Clicked", Toast.LENGTH_SHORT).show()
+
+            }
+            android.R.id.home ->{
+                finish()
+            }
+        }
+        return true
     }
 }
 

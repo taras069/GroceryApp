@@ -13,4 +13,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="welcome_to_our_app">Welcome to Our App!</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="skip">Skip</string>
+    <string name="all_categories">All Categories</string>
+    <string name="cart">Cart</string>
+
 </resources>
